@@ -6,15 +6,13 @@ Implementing xAI Techniques on "healthcare-dataset-stroke"
 ```
 xAI-Digital-Project-for-Stroke-Risk/
 ├─ README.md
-├─ data/
-│  └─ healthcare-dataset-stroke-data.csv
-└─ notebooks/
-	 └─ digitalProject.ipynb
+├─ digitalProject.ipynb
+└─ healthcare-dataset-stroke-data.csv
 ```
 
 ## How to run the notebook
 
-1. Open `notebooks/digitalProject.ipynb` in VS Code (recommended) or Jupyter.
+1. Open `digitalProject.ipynb` in VS Code (recommended) or Jupyter.
 2. Ensure the Python environment has the required packages:
 	 - pandas, matplotlib, seaborn
 	 - scikit-learn, imbalanced-learn
@@ -27,7 +25,7 @@ If needed, install them (example commands):
 pip install -U pandas matplotlib seaborn scikit-learn imbalanced-learn xgboost catboost dice-ml
 ```
 
-3. The notebook expects the dataset at `../data/healthcare-dataset-stroke-data.csv` relative to the notebook location. The provided notebook already uses this path.
+3. The notebook expects the dataset at `healthcare-dataset-stroke-data.csv` in the repository root (same folder as the notebook). The provided notebook already uses this path.
 4. Run cells from top to bottom. A roadmap cell at the top outlines the analysis steps (data loading, cleaning, SMOTE, models: RF/XGBoost/CatBoost, metrics, feature importances, counterfactual analysis with DiCE, and conclusions).
 
 ## Notes
@@ -57,7 +55,7 @@ To keep the notebook up to date and avoid clashing when multiple people work:
 	- Prefer many small commits over a single large one.
 
 - Data files
-	- Keep the dataset under `data/`. If you plan to commit very large files or frequent changes, consider Git LFS.
+	- The dataset is kept at the repository root as `healthcare-dataset-stroke-data.csv`. If you plan to commit very large files or frequent changes, consider Git LFS.
 
 - Reviews and protection (on GitHub)
 	- Enable branch protection on `main` and require PR reviews and status checks.
@@ -74,7 +72,7 @@ git pull
 git checkout -b feature/refactor-eda
 
 # do work, commit
-git add notebooks/digitalProject.ipynb
+git add digitalProject.ipynb
 git commit -m "Refactor EDA section: cleaner plots, no outputs committed"
 
 # rebase on latest and push
