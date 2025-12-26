@@ -10,28 +10,30 @@ xAI-Digital-Project-for-Stroke-Risk/
 └─ healthcare-dataset-stroke-data.csv
 ```
 
-## How to run the notebook
-
-1. Open `digitalProject.ipynb` in VS Code (recommended) or Jupyter.
-2. Ensure the Python environment has the required packages:
-	 - pandas, matplotlib, seaborn
-	 - scikit-learn, imbalanced-learn
-	 - xgboost, catboost
-	 - dice-ml (for counterfactuals)
-
-If needed, install them (example commands):
+### Typical work cycle
 
 ```bash
-pip install -U pandas matplotlib seaborn scikit-learn imbalanced-learn xgboost catboost dice-ml
-```
+# start from up-to-date main
+git checkout main
+git pull
 
-3. The notebook expects the dataset at `healthcare-dataset-stroke-data.csv` in the repository root (same folder as the notebook). The provided notebook already uses this path.
-4. Run cells from top to bottom. A roadmap cell at the top outlines the analysis steps (data loading, cleaning, SMOTE, models: RF/XGBoost/CatBoost, metrics, feature importances, counterfactual analysis with DiCE, and conclusions).
+# create a branch
+git checkout -b feature/add-branch-name
+
+# do work, commit
+git add digitalProject.ipynb
+git commit -m "Commit comment here"
+
+# rebase on latest and push
+git pull --rebase
+git push -u origin feature/add-branch-name
+
+# open a PR, get review, merge, then clean up
+```
 
 ## Notes
 
-- Tree-based models are generally robust to outliers; however, the notebook removes a few clinically implausible cases to improve explanation quality.
-- In healthcare settings, recall is emphasized to reduce false negatives. The notebook’s grid search prioritizes recall accordingly.
+- The notebook expects the dataset at `healthcare-dataset-stroke-data.csv` in the repository root (same folder as the notebook). The provided notebook already uses this path.
 
 ## Collaboration workflow
 
@@ -60,25 +62,3 @@ To keep the notebook up to date and avoid clashing when multiple people work:
 - Reviews and protection (on GitHub)
 	- Enable branch protection on `main` and require PR reviews and status checks.
 	- Optionally require linear history to encourage `--rebase` workflows.
-
-### Typical work cycle
-
-```bash
-# start from up-to-date main
-git checkout main
-git pull
-
-# create a branch
-git checkout -b feature/refactor-eda
-
-# do work, commit
-git add digitalProject.ipynb
-git commit -m "Refactor EDA section: cleaner plots, no outputs committed"
-
-# rebase on latest and push
-git pull --rebase
-git push -u origin feature/refactor-eda
-
-# open a PR, get review, merge, then clean up
-```
-

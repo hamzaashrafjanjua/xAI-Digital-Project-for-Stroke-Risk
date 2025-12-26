@@ -1,0 +1,509 @@
+\documentclass[1pt,a4paper,]{article}
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}     	% hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{amsmath}        % mathematic formulas
+\usepackage{acronym}       
+\usepackage[english]{babel} %\usepackage[english,german]{babel}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{suffix}
+\usepackage{csquotes}
+\usepackage{apacite}
+\usepackage{xstring}
+\usepackage{relsize}
+
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily, breaklines = true}
+
+\usepackage[nottoc]{tocbibind}
+\usepackage{lipsum}
+\usepackage{tabularx} % for 'tabularx' environment
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\usepackage{bbm}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{mathdots}
+\usepackage{yhmath}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{siunitx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amssymb}
+\usepackage{subfigure}
+\usetikzlibrary{fadings}
+
+\def\keywords{\vspace{.1em}
+{\textit{Keywords}:\,\relax%
+}}
+\def\endkeywords{\par}
+
+\begin{document}
+%Einrichten der Titelseite
+
+\begin{titlepage} 
+	\centering
+	\includegraphics[width = 0.5
+	\textwidth]{Uni_Logo.png}\par\vspace{1cm}
+	{\scshape\LARGE  Catholic University Eichstätt-Ingolstadt \par}
+	\vspace{1cm}
+	{\scshape\Large Seminar Paper\par}
+	\vspace{1.5cm}
+	{\huge\bfseries Explainable AI Techniques on Stroke Risk Prediction\par}
+	\vspace{2cm}
+	submitted by\par
+        \vspace{0.2cm}
+	{\Large\itshape Minh Hai Tran\par}
+	Matriculation number: 00000\par
+        \vspace{0.1cm}
+    {\Large\itshape Hamza Muhammad\par}
+	Matriculation number: 11044170\par
+        \vspace{0.1cm}
+    {\Large\itshape Pavitra\par}
+    Matriculation number: 00000\par
+        \vspace{0.1cm}
+    {\Large\itshape Jing\par}
+	Matriculation number: 00000\par
+	\vfill
+
+	Supervised by\par
+	Prof. Dr. Thomas Setzer\par
+	WFI - Ingolstadt School of Management\par
+	\vfill
+
+% Bottom of the page
+    Submission date:\par
+	{\large \today\par}
+\end{titlepage} 
+
+
+\begin{abstract}
+\thispagestyle{empty}
+    \noindent Many scientific theses, manuscripts, articles or papers are preceded by a short abstract --a concise summary of what your work is about and what results you come to. An abstract gives the reader a good first overview of what to expect in your thesis. In most cases the abstract is the only part of your scientific work that appears in indexing databases and so will be the most accessed part of your thesis. It is advisable to make a good impression as this will encourage researchers and interested readers to read your full thesis. The abstract does not appear in the table of contents.
+    Besides the abstract, it is strongly recommended to make use of between four and six keywords. Keywords help humans and search engines to find relevant articles (papers, theses) and give a brief overview about the main topics discussed in the scientific manuscript. However, to be effective, keywords must be chosen carefully. 
+    They should represent the content of your manuscript and be specific to your field or sub-field. 
+   When writing your thesis or paper at the chair of Business Informatics at WFI, providing an abstract and a keywords list is mandatory, where your abstract is a most half of a page long, and (between four and six) keywords are to be provided as a comma-separated list below the abstract, starting with 'Keywords: " as shown below.
+\\
+\\
+\begin{small}
+\begin{keywords}
+LaTeX-Template, Seminar Paper, WFI, Chair of Information Systems
+\end{keywords}
+\end{small}
+\end{abstract}
+
+%----------------------------------------------------------------------------------
+%Beginn einer neuen Seite
+\pagenumbering{Roman}
+\newpage
+% \begin{KeepFromToc}
+  \tableofcontents %Inhaltsverzeichnis (ohne eigenen Eintrag im Inhaltsverzeichnis
+% \end{KeepFromToc}
+\setcounter{page}{0}
+\newpage
+\listoffigures      %Abbildungsverzeichnis
+\newpage
+\listoftables       %Tabellenverzeichnis
+\newpage
+\section*{List of Abbreviations}
+\addcontentsline{toc}{section}{List of Abbreviations}
+\input{acro_list.tex}
+\newpage
+\pagenumbering{arabic}
+%----------------------------------------------------------------------------------
+\section{Welcome} \label{sec:welcome}
+Welcome to this \LaTeX{} template, an easy to use template for writing your thesis or paper at the Chair of Business Informatics -- Ingolstadt School of Management (WFI) using the \LaTeX{} typesetting system.
+
+If you are writing a paper or thesis (or intend to do so) and its subject is analytical or mathematical (which will typically be the case, though it doesn't have to be), then creating it in \LaTeX{} is recommended as a way to make sure you can focus on the writing without having to worry about formatting or your word processor.
+
+\LaTeX{} is easily able to typeset documents that are hundreds of pages long. With a set of mark-up commands, it automatically sets out the table of contents, margins, page headers and footers and keeps the formatting consistent. One of its key strengths is the way it can easily typeset mathematics. 
+
+
+\section{Learning \LaTeX{}}
+\LaTeX{} is no \textsc{wysiwyg} (What You See is What You Get) program.
+Instead, a document written for \LaTeX{} is a plain text file that contains \emph{no formatting}. You tell \LaTeX{} how you want the formatting in the document by writing in simple commands amongst the text, for example, if I want to use \emph{italic text for emphasis}, I write the \verb|\emph{text}| command and put the text I want in italics in between the curly braces. This means that \LaTeX{} is a \enquote{mark-up} language, like HTML.
+% NB Comment: sometimes "I".. sometimes "you"...
+\subsection{A short Introduction to \LaTeX{}}
+If you are not already familiar with \LaTeX{}, there is an eBook -- freely available online as a PDF file -- called ``\enquote{The Not So Short Introduction to \LaTeX{}}''. You can download the eBook at 
+\url{http://www.ctan.org/tex-archive/info/lshort/english/lshort.pdf}
+
+%It is also available in several other languages. Find yours from the list on this page: \url{http://www.ctan.org/tex-archive/info/lshort/}
+
+We recommended to take some time to learn how to use \LaTeX{} by creating small `test' documents.
+Making the effort now means you are not hindered learning the system when you \emph{actually} want to write your thesis.
+% NB: You are statt you're; ist das ein system?
+\subsection{Common \LaTeX{} Mathematical Symbols}
+There are a multitude of math symbols available for \LaTeX{}. The most common ones you are likely to use are shown on the following page:
+\url{http://www.sunilpatel.co.uk/latex-type/latex-math-symbols/}
+
+You can use this page as a reference, the symbols are rendered as large, high quality images so you can quickly find the \LaTeX{} command for the symbol you need. Several examples of creating mathematical expressions are provided in Section \ref{sec:mathequations}.
+
+\subsection{Using \LaTeX{} on a Mac, Windows, Linux, or Online via Overleaf}
+The \LaTeX{} distribution is available for many operating systems including Windows, Linux and Mac OS X. The package for Mac OS X is called MacTeX and it contains all the applications you need -- bundled together and pre-customized -- for a fully working \LaTeX{} environment and work flow.
+
+MacTeX includes a custom dedicated \LaTeX{} editor called TeXShop for writing your `.tex' files and BibDesk: a program to manage your references and create your bibliography section just as easily as managing songs and creating playlists in iTunes.
+
+On a Windows machine, you can choose, for instance, between TeX Live and MiKTeX; both distribution will be suitable. You should, however, take care that you install the full version, including all typically used packages, and not a base version. Both install a basic editor named TeXworks. You can, however, also use TeXstudio which is typically considered easier to use. 
+
+You can, alternatively, also write your \LaTeX{} thesis or paper without installing a \LaTeX{} environment on your local computer using the powerful and free of charge online platform \emph{Overleaf} at \url{https://www.overleaf.com}.
+
+In the following, information is provided how to use this template, how to write \LaTeX{} documents, and how your thesis or paper is required to be formatted and structured.
+
+\section{Organisation of Your Thesis or Paper} %Kapitel
+ In what follows, we will start with organizational information that you should be well aware of when writing a thesis or paper at our research chair.
+ 
+\subsection{Registration and Submission}
+Once all formal requirements for your thesis are met, and topic and title are arranged with -- and approved by -- your supervisor, the thesis can be registered at the Examination Office. Please fill out the respective PDF form on the Website of the Examinations Office. Then, directly submit the form with all original signatures to the Examinations Office.
+Please note that the maximum duration of study must not be exceeded when (finally) submitting your thesis.
+
+Finally, Bachelor's or Master's theses are then to be submitted in bound form (two copies) to Department III/3 (room 012). 
+
+Project modules or Proseminar papers are handed in at the chair as an unbound copy.
+
+In addition to the printed version of the thesis, the PDF-version of your thesis or paper, all data processed in the thesis, the programming code as well as the \LaTeX-source code have to be submitted collectively by e-mail to the secretary's office of the chair. Only then, the assessment of the thesis can be started. 
+
+\subsection{Page Count}
+Thesis and papers should have the following page count:
+\begin{enumerate} %Nummerierte Aufzählung
+\item Proseminar Paper: 15 pages
+\item Project Module Paper: 20 pages
+\item Bachelor's Thesis: 40 pages
+\item Master's Thesis: 60 pages
+\end{enumerate}
+
+Please notice that page count is allowed to differ +/- 10 percent of the above values. 
+
+There is a difference how papers (Proseminar or Project Module) and theses (Bachelor's Thesis and Master's Thesis) are credited. While you receive 5 ECTS for a paper, a Bachelor's Thesis is credited 10 ECTS, and a Master's Thesis is credited 30 ECTS. If not stated otherwise, a thesis at the Chair of Business Informatics will contain a software development / implementation part in a modern programming language such as R or Python, either related to data and analytics or systems and software engineering (or both). Knowledge of a modern programming language and either data analytics or information systems are therefore mandatory.
+
+\subsection{Mandatory Title Page}
+Information required on the Title Page as well as its layout are shown on the first page of this template. Every deviation from this template must be approved by your supervisor before submitting the thesis or the paper.
+
+\textit{For all theses and papers, the topic on the title page must literally match the topic on the application form, otherwise the thesis must be rejected!}
+
+Beyond the title page, there are further mandatory parts of a thesis or paper, such as the Affidavit at the end of the document. Please read the text in this template carefully to ensure that you submit a thesis or paper that fulfills all formal acceptance criteria. 
+
+If you write your thesis in German in agreement with the chair, it is mandatory to mention the English title of the thesis on the cover page in addition to the German one.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Getting Started with Writing Your Thesis}
+
+A thesis usually has about six main sections (chapters), but there is no general and mandatory rule on this. We further refer to main sections simply as sections. We recommend to place all sections sequentially into one file, although you can decide that each section goes in its own .tex file.
+
+A very general structure of your thesis, assuming you are designing a novel machine learning artifact (method) could read like this.
+\begin{itemize}
+\item Section 1: Introduction to the thesis topic and problem statement
+\item Section 2: Background information and theory
+\item Section 3: Development of your methodology  
+\item Section 4: Description of data set used for the evaluation, its preprocessing, and experimental design
+\item Section 5: Experimental (or analytical) results
+\item Section 6: Discussion of the results
+\item Section 7: Conclusion and future outlook
+\end{itemize}
+
+This layout is specialised for the experimental and data sciences, and your structure might look different. In any case, you will have to find appropriate headings for your sections concretely reflecting what you are doing and writing about. 
+
+However, a thesis or paper always starts with an introductory section that provides readers the background information necessary to understand your work and its motivation. In this section you also state the problem or question addressed in our thesis or paper. The introduction also outlines the further structure (sequence of sections and subsections that follow) of the thesis or paper. Please notice that you should not go into too great details, i.e., into subsubsections.  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Files Required and Produced}
+To compile your \LaTeX{} document, besides your main \LaTeX{} file (e.g., MythesisTemplate.tex when directly using this template without renaming it), some more files are required. 
+
+References.bib -- this file will contain all bibliographic information and references cited in the thesis or paper for use with BibTeX. You can write it manually, but there are reference manager programs available that will create and manage it for you. You may need to read about BibTeX before starting with this. Many modern reference managers will allow you to export your references in BibTeX format which greatly eases the amount of work you have to do.
+
+MythesisTemplate.pdf -- this is your typeset thesis (in the PDF file format) created by \LaTeX{} when you compile your document.
+
+FigureXY.pdf -- we recommend to copy every figure to be included in the thesis into the same folder (or subfolders) of your main document MythesisTemplate.tex.
+
+Auxiliary files -- ending with .aux, .blg, .bbl, .lof, .log, and .out are created by \LaTeX{} as auxiliary files automatically.
+
+\section{Form, Fonts and Footnotes} %Kapitel
+By default, the thesis will be written in English language (on agreement with the supervisor, or if announced in the respective module descriptions, the thesis can also be written in German). 
+
+The font to be used is Times New Roman with size 11 pt.
+
+The paper size used in the template is A4, which is the standard size in Europe.
+
+The thesis or paper must use the documentclass ``article'', setting default values for line spacing, indents, headers, page numbering and number formats, and many more formatting settings. Any deviation from these default values must be approved by the supervisor. 
+% \documentclass[1pt,a4paper,]{article}
+
+Footnotes should be used sparingly. Footnotes are neither allowed for quoting another author's work nor for citing academic or non-academic work (including news and/or data sources). Footnotes are, however, an acceptable method of providing material of an explanatory nature or further information, which does not fit into the flow of the body of the text.
+
+\section{Lists and Formatting Guideline} %Kapitel
+In this section, important instructions are provided regarding the formatting of your thesis and how to implement specific document elements with \LaTeX{} according to the style guide of the Chair of Business Informatics.
+
+\subsection{Table of Contents and Sections}
+The Table of Contents (named just ``Contents'') contains the outline of sections with corresponding page references. 
+Regarding the division of papers and theses into subsections your manuscript should be structured in a balanced way, overlapping of content should be avoided, and the section titles should allow for understanding your line of argumentation. 
+If a section is divided into subsections, there must be at least two subsections (likewise, in case a subsection contains subsubsections, there must be at least two subsubsections). 
+
+Please notice that the hierarchy depth of sections is limited to three (subsubsubsections are not allowed).
+
+Furthermore, there must always be regular (body) text after a section, subsection, or subsubsection heading, briefly sketching the content that follows (in no case, a header of a section, subsection, subsubsections follows immediately after the header of another section, subsection, or subsubsection).
+
+The headings in the text must literally correspond to those in the outline.
+
+References to individual sections (or subsections) are stated as Section X, Section X.Y, or Section X.Y.Z, avoiding the usage of the term Subsections or Subsubsection. Example: ``... as already stated in Section 3.2.1, ...''.
+
+\subsection{Figures and Illustrations}
+Figures (or tables, if included as graphics) are integrated in a centered position. Directly below a figure follows the  caption. You add a caption to the figure using the \textit{caption} command. This figure caption is also listed in the List of Figures.
+
+To insert a figure, you copy the graphics file in the directory of your \LaTeX-environment. You then use the chosen filename and insert it after the command ``includegraphics''. With the help of the optional \textit{width} command you can adjust the size of the graphic to the document and change it if appropriate. 
+
+A caption contains the title of a figure and a potential reference to its source. Regarding the source, there are three distinctions to be made here:
+\begin{enumerate}
+    \item  If the figure was produced by the author himself/herself, but its contents were taken over completely from an external source, the name of the author, the year of publication, and the corresponding page of the source figure must be provided.
+    \item If the figure has been partly from an external source, but the content has been adjusted (shrunk, extended, changed), the source is to be marked "in accordance with ...".
+    \item If the figure has been specially created and the contents of the figure have not been taken from an external source, no separate reference is to be made.
+\end{enumerate}
+
+For an example of a figure, please have a look at Figure \ref{img:grafik-dummy}. Please notice how we refer to a figure, by referencing the text of the figure giving in \emph{label}. 
+Also, please capitalize each noun, verb and adjective, (section) titles, and captions.
+
+% \\
+% \begin{figure}[h]
+% 	\centering
+% 	{%
+% \setlength{\fboxsep}{0pt}%
+% \setlength{\fboxrule}{0pt}%
+% 	\fbox{\includegraphics[width=1.0\textwidth]{Heteroskedasizitaet.png}}
+%     }%
+% 	\caption{Comparison of Homoscedascity with Heteroscedascity}
+% 	\setcaptioncitation \cite{pinder2016introduction}
+% 	\label{img:grafik-dummy}
+% \end{figure}
+
+\begin{figure}[h]
+\centering
+    % \includegraphics[width=1.0\textwidth]{pictures/Heteroskedasizitaet.png} % here png or pdf, pdf can be vector graphics. 
+    \input{cdf}
+    \caption[Empirical cumulated density functions (ECDFs) of the trip statistics.]{Empirical cumulated density functions (ECDFs) of the trip statistics. Blue color represents car 1, and red for car 2. Dotted lines are the original profiles aggregated from the logged signals. Solid lines are the mean ECDFs of synthesized week profiles, as the procedure is repeated 10 times. Due to the tiny fluctuation of the ECDFs with repetition, the 95\% confidence bands for synthesized profiles are not visualized here \cite{Ling.2020}. }
+ 	
+	\label{img:grafik-dummy}
+\end{figure}%
+
+
+\subsection{Abbreviations and Symbols}
+Abbreviations are to be explained on their first appearance in the text. Abbreviations are also listed in the Table of Abbreviations, which follows the List of Tables. Abbreviations must be clearly formulated. Commonly used abbreviations like e.g. for "example given" neither need to be explained nor listed. 
+
+All symbols used in the work must be defined where they are first used. 
+
+When using this template, you can add a new abbreviation to the List of Abbreviations by calling \lstinline|acro_list.tex| in the working directory and add the new abbreviation. The List of Abbreviations is then automatically updated.
+
+\subsection{Numbering of Directories}
+All lists/tables (Table of Contents, List of Figures, List of Tables, etc.) must be marked with consecutive Roman page numbers and listed in the Table of Contents. 
+
+As can be seen in the Table of Contents, contents in the main document (after the lists and before the appendix) are marked with Arabic numerals, while the different directories, like Lists of Figures, Tables, Abbreviations, References and sections in the appendix are numbered with Roman numerals.
+
+\newpage
+ \subsection{Tables}
+ Tables are an important way of displaying data, structured information, or, in particular, your results. 
+ 
+The content of a table is entered line by line (with a line break). 
+The individual columns of each row, representing cells, are separated from each other by \&. As figures, tables must have labels to be able to include them in the List of Tables and to reference them. Table \ref{tab:template} gives an example of how to write a table in \LaTeX.
+
+% \begin{table}[h!]
+% \centering
+% \begin{tabular}{ p{3cm} p{3cm} p{3cm} p{3cm}  }
+% \hline
+% \multicolumn{4}{c}{Table Heading} \\
+% \hline
+%  ROW 1 &  ROW 2 &  ROW 3 &  ROW 4\\
+%  Afghanistan   & AF    &AFG&   004\\
+%  Aland Islands&   AX  & ALA   &248\\
+%  Albania &AL & ALB&  008\\
+%  Algeria    &DZ & DZA&  012\\
+%  Andorra& AD  & AND   &020\\
+%  Angola& AO  & AGO & 024\\
+% \hline
+% \end{tabular}
+% \caption{Description of the Table for List of Tables}
+% \label{tab:template}
+% \end{table}
+
+\begin{table}[h!]
+\centering
+\begin{tabularx}{\textwidth}{XXXX}
+% \begin{tabular*}{llll} %{ p{2,5cm} p{2,5cm} p{2,5cm} p{2,5cm}}
+\toprule 
+\multicolumn{4}{c}{Table Heading} \\
+\midrule 
+ ROW 1 &  ROW 2 &  ROW 3 &  ROW 4\\
+ \midrule 
+ Afghanistan   & AF    &AFG&   004\\
+ Aland Islands&   AX  & ALA   &248\\
+ Albania &AL & ALB&  008\\
+ Algeria    &DZ & DZA&  012\\
+ Andorra& AD  & AND   &020\\
+ Angola& AO  & AGO & 024\\
+\bottomrule 
+\end{tabularx}
+\caption{Description of the Table for List of Tables}
+\label{tab:template}
+\end{table}
+
+The source is given directly below the table caption. All tables of the work are to be listed in a List of Tables. 
+This list is placed after the List of Figures and contains information on table number, title of the table, and page number. If the reference is not clearly evident, it is essential to refer to the tables at the appropriate position in the text. Please notice that vertical lines are to be avoided.  
+
+A very important note regarding tables and figures: all figures and tables have to be explained in detail in the body text. There should not be a single table or figure that is not referenced and sufficiently explained in the document, even if a table or figure seems to be ``self-explaining''.
+
+\subsection{Creation of Bullet or Enumeration Lists}
+\LaTeX supports two types of lists: \emph{Enumerate} creates numbered lists, while \emph{Itemize} is used for unnumbered lists. Each list element is defined by the command \lstinline!\item!. Lists can also be nested to create sublists. The enumeration symbol can be changed with the help of square brackets after the \lstinline!\item!. For example, \lstinline!\item![-] will generate a hyphen as a bullet point. 
+ 
+ \begin{enumerate}
+     \item Point 1
+     \item Point 2
+     \begin{itemize}
+     \item Point 2 - Subpoint 1 
+     \item Point 2 - Subpoint 2
+     \end{itemize}
+     \item Point 3 
+\end{enumerate}
+
+\subsection{Mathematical Formulae} \label{sec:mathequations}
+You create an environment for numerical expressions with an opening and closing dollar sign \lstinline! $1+2=3$ !. If you want to display an equation in a separate line, place two dollar signs each in front of and behind the equation. For example, \lstinline! $$1+2=3$$ ! will generate the following output:
+$$1+2=3$$
+For a numbered equation use the command:
+\begin{lstlisting}
+    \begin{equation}
+        FORMULA
+    \end{equation}
+\end{lstlisting}
+
+\noindent Example 1 - Mathematical Product Formula:
+\begin{equation}\label{eqn.mynewlabel}\prod \limits_{i=1}^{n+1}i = 1\cdot 2\cdot\dots\cdot n\cdot (n+1)\end{equation}
+
+\noindent Example 2 - Mathematical Sum Formula:
+\begin{equation}\label{eqn.mynewlabel_1}\sum \limits_{i=1}^n i = \frac{n(n+1)}{2}\end{equation}
+
+\noindent Example 3 - Mathematical Integral Formula:
+\begin{equation}\label{eqn.mynewlabel_2}\int_0^3 x^2 \,\mathrm{d}x = 9\end{equation}
+
+\noindent Example 4 - Mathematical Binom Formula:
+\begin{equation}\label{eqn.mynewlabel_3}\binom{a}{b} \end{equation}
+
+To be able to refer to an equation in the text, an equation is labeled and a reference to an equation is then made using the command \lstinline!\ref{eqn.mynewlabel}! in \LaTeX. In this case the label ``eqn.mynewlabel'' stands for equation (1).
+For example: ``In (\ref{eqn.mynewlabel}) a product formula is shown''. 
+Please notice that, in contrast to tables and figures we do not reference mathematical expressions using ``As shown in Equation (\ref{eqn.mynewlabel})'' but only use ``As shown in (\ref{eqn.mynewlabel})''. 
+
+For a better understanding of the creation of mathematical formulas, it is advisable to consult further literature. A good introduction can be found in the tech report "When grace meets beauty, LATEX meets mathematics" \cite[]{parthasarathy2008grace}.
+
+\newpage
+ \section{Citations}
+Correct citation is a key requirement for every scientific article. It must be precisely stated to whose statement the author refers and from which source it comes from.
+
+\subsection{Citation Forms}
+To integrate the statements of other authors into the work, it is possible to quote either analogously or literally (verbatim).
+
+\textit{Verbatim Quotes:} Literal quotations are only useful if the original formulation of the text is important or the author has formulated the text particularly aptly. Literal quotations are started and ended with quotation marks. Quotations and references always require literal accuracy. Additions to the original should therefore be clearly marked by round bracketed additions with a square bracketed note, e.g. [author's note]. The omission of one or more words is indicated by three dots.
+
+Example: "Text of the literal quotation (what is meant here is ... [author's note]) further text of the quotation" ...
+
+Verbatim quotations must be adopted without deviation from the original, i.e. any outdated spelling, incorrect orthography and punctuation must also be reproduced. If the quotation contains an error, it should be pointed out with "(sic!)" in the appropriate place. The punctuation at the end of the quotation must not be used if it is not correct in the current text. Quotations in a citation are marked with an apostrophe ('...') at the beginning and at the end. Quotations from English sources usually do not need to be translated. Quotations in a different foreign language require a translation with the name of the translator. A literal quotation should generally not exceed two to three sentences. If longer quotations appear unavoidable, they must be indented in the text and written in single-line spacing. In principle, quotations should be made according to the original text; only if the original work is not accessible can quotations be made from the secondary literature after the source has been cited. In this case, the source reference also indicates the secondary literature with the note ``..., quote after ...''. Both the primary and secondary sources must be included in the bibliography.
+
+\textit{Analogous quotes:} An analogous quotation is present when the thoughts of others are taken over or when other authors are taken as a reference. It is therefore not the literal reproduction of a text. The extent of an analogous adoption must be clearly recognizable. It may therefore be necessary to precede the analogous quotation with an introductory sentence, such as "The following description is based on Hippner (2006, p. 27.)". If the author is named, it is not necessary to refer to the source again at the end of the section.
+
+\subsection{Citation Style}
+Citations are formatted following the \emph{APA style} suggested by the American Psychological Association in the ``Publication Manual of the American Psychological Association''. A thorough APA Formatting and Style Guide is for instance provided by the Purdue Writing Lab at \url{https://owl.purdue.edu/owl/research_and_citation/apa_style/} that can be used as a starting point to help you cite sources using the Publication Manual of the American Psychological Association.
+
+When citing, not just any quotation is to be given to support the opinion held by the author, but if possible the quotation of the author who first expressed this opinion. 
+
+To support this opinion, further confirming quotations, also from other authors, can be given. In this case the quotations are to be mentioned \textit{in chronological order}. Quotations must be provided with a reference to the source by inserting a short reference in the current text at a suitable place. In the case of references, the surname of the author, year of publication and page number must be given. \\
+
+\noindent Example -- One author: \\
+... Text \cite[~p. 6]{pinder2016introduction} \\
+
+\noindent Example -- Two authors: \\
+If you want to specify a "p." or an "pp." for "following" or "continuing", just add it behind the page number.  \\
+... Text \cite[~p. 15 pp.]{mclafferty1989wiley} \\
+
+\noindent Example -- Referencing two authors in one: \\
+... Text \cite{waller2013data,pinder2016introduction} \\
+
+\noindent Example -- Referencing two authors + pages in one: \\
+... Text (\citeNP{waller2013data}, p. 1; \citeNP{pinder2016introduction}, p. 5) \\
+
+
+
+
+APA style requires that up to five authors are shown in full on a first citation, then in subsequent citations lists of three to five authors are only abbreviated to "et al.". \\
+
+\noindent Example -- First citation of five authors: \\
+... Text \cite{marewski2010recognition} \\
+
+\noindent Example -- Ongoing citations of the same five authors: \\
+... Text \cite{marewski2010recognition} \\
+
+
+If you are citing an online source rather than a book or paper, it is important that you still provide the author, the date of publication and a link to the online source. Besides it is also important to note the date of the last access to the webpage using the note \textit{Accessed: YYYY-MM-DD} in the "References.bib" document. A simple way of doing it in BibTeX is with a @misc entry. \\
+
+\noindent Example -- Online source: \\
+... Text \cite{rut20w} \\
+
+If a source is missing both the author and publication date, the citation will include the title, "n.d." for "no date," and the source. Make sure that there is no identifiable author. Sometimes the author is a company or another group instead of an individual. For this case you can use the "misc" command and leave the Author and Date field empty. \\
+
+\noindent Example -- Reference without Author and Date: \\
+... Text \cite{withoutautoranddate} \\
+
+If you want to cite an online database in your document, you can also use the "misc" command. In addition to the usual, available information, also specify the source in the form of a web link the date of access. \\
+
+\noindent Example -- Reference Online Databases: \\
+... Text \cite{WB:2014} \\
+
+Sometimes it happens that you want to quote an online article, but cannot find any information about the author and/or the date. In order to be able to cite the article in the scientific paper, you transfer all available information, such as the link and the title of the article, into  "References.bib". Since this is an online source, it is important to include the date of the last access to the online article in the bibliography.  \\
+
+\noindent Example -- Reference of Online Articles with no Author and no Date but Title: \\
+... Text \cite{onlinearticle} \\
+
+At the end of the sentence, the bracketed reference is placed before the full stop. In the bibliography all authors must be named.
+
+To make them easier to find, the short documents should generally show the page number of the corresponding text passage in the cited work. Only in absolutely exceptional cases, e.g. if the entire article is referred to as further literature, page numbers may be omitted.
+\\
+\\
+If the source reference refers to two consecutive pages, this can be indicated by an "p." (following), several successive pages are identified by "pp.". You will find examples of the bibliography in the references.
+
+\subsection{Paragraph Citations and Text Citations}
+
+This subsection illustrates the use of BibTeX\@.  You may want to refer to \citeA{garfield2006history} or \citeA{waller2013data} or \citeA{pinder2016introduction}.  Or you may want to cite a
+specific page in a reference, like this: see \citeA[p.~199]{pinder2016introduction}. If you want to make a parenthetical reference to one or more articles, you can just type \cite{garfield2006history}.
+
+For example \citeA{waller2013data} found, that "data science requires both domain knowledge and a broad set of quantitative skills" \cite[p.~12]{waller2013data}.
+
+
+\newpage
+\pagenumbering{Roman}
+
+\appendix
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\newpage    
+
+\setcounter{page}{5}
+\addcontentsline{toc}{section}{Appendices}
+\section{The First Section in the Appendix}
+The main components of an appendix are supplementary materials such as larger tabular and graphic representations, photocopies or longer legal texts. Often the appendix is used in the context of empirical work to illustrate the questionnaire and to present the statistical results. In terms of content, the appendix should only contain what is not absolutely necessary for understanding the text.
+
+\section{The Second Section in the Appendix with Further Information}
+The figures of the Annex are numbered consecutively, but are now counted in a new way, i.e. independently of the numbering of the figures in the text. The Annex should generally be preceded by a list of annexes if more than one document is attached. In the Annex, the Roman numbering (of the Table of Contents, the Table of Figures, etc.) is continued.
+
+\cite{testtest}
+
+
+\newpage
+\bibliographystyle{apacite}
+\bibliography{References.bib}
+
+\newpage
+\section*{Affidavit}
+\setcounter{page}{0}
+I hereby declare that I have written the present Bachelor's / Master's thesis independently and without the help of third parties that are not explicitly stated in the document and communicated to the supervisor. No other sources and aids than those indicated were used for the Bachelor's / Master's thesis. I have marked all contents taken from the given sources, either verbatim or analogous, accordingly.
+\\\\\\\\\\
+\hrule
+\vspace{0.5cm}
+
+\noindent Date, Max Mustermann
+\end{document}
