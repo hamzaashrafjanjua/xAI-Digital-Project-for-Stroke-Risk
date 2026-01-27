@@ -1,0 +1,18 @@
+# CODEOWNERS
+# Assign file/folder ownership to require review from the right people.
+# Replace @owner1 and @owner2 with actual GitHub usernames or teams.
+
+# Default: require team review for any changes
+*       @owner1 @owner2
+
+# Notebook ownership
+/digitalProject.ipynb   @owner1
+
+# LaTeX paper ownership
+/SeminarPaper_Blueprint/ @owner2
+
+# Data ownership (often restricted; consider separate repo/storage)
+/healthcare-dataset-stroke-data.csv  @owner1
+
+# Model artifacts are ignored via .gitignore; if tracked, assign explicit owners
+/catboost_info/   @owner2
