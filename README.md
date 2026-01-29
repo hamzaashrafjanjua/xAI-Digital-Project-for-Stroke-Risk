@@ -1,64 +1,105 @@
 # xAI-Digital-Project-for-Stroke-Risk
-Implementing xAI Techniques on "healthcare-dataset-stroke"
 
-## Repository structure
+A comprehensive explainable AI (xAI) analysis of stroke risk prediction using machine learning models and local interpretability techniques. This project demonstrates the application of LIME (Local Interpretable Model-agnostic Explanations) and other xAI methods to understand and validate predictive models for clinical decision support.
+
+## Project Overview
+
+This project implements and evaluates multiple machine learning models for stroke risk prediction, with a strong emphasis on model explainability and interpretability. The analysis includes:
+
+- **Predictive Modeling**: Random Forest and XGBoost classifiers trained on comprehensive health metrics
+- **Model Evaluation**: Performance metrics (accuracy, precision, recall, F1, ROC-AUC) with extensive comparative analysis
+- **Explainability Analysis**: LIME-based local explanations, feature importance analysis, and fidelity assessment
+- **Clinical Validation**: Cohort-wise statistical analysis to ensure fairness and reliability across demographic groups
+- **Counterfactual Analysis**: DiCE-based explanations showing actionable paths to prevent stroke
+
+## Key Findings
+
+### Model Performance
+- **XGBoost** demonstrates higher risk-sensitivity and superior overall performance (higher recall), making it favorable for medical applications where missing high-risk cases is costly
+- **Random Forest** offers more conservative predictions with greater stability and higher LIME fidelity scores, indicating more reliable local explanations
+
+### Feature Importance
+- **Age** and **Average Glucose Level** emerge as the two most influential features in both models, aligning with medical literature and validating model trustworthiness
+- Prior hypertension and heart disease show surprisingly low local influence weights, suggesting complex non-linear interactions that warrant clinical expertise review
+
+### LIME Fidelity Insights
+- Random Forest achieves **higher average fidelity** (~0.35+) compared to XGBoost (~0.27), indicating more faithful local linear approximations
+- **High-fidelity regions** (R² > 0.6): LIME weights reliably represent directional influence and approximate magnitudes
+- **Moderate-fidelity regions** (0.3-0.6): LIME provides directional guidance but should be cross-verified with clinical judgment
+- **Low-fidelity regions** (< 0.3): Use LIME cautiously; flag instances for manual expert review
+
+### Calibration Analysis
+- Comprehensive cohort-wise analysis reveals model calibration patterns across age groups, smoking status, and cardiovascular history
+- Identified calibration gaps inform threshold adjustments for clinical deployment
+- Both models show better calibration for extreme risk cases (very high or very low probability) than for borderline cases
+
+## Technical Stack
+
+- **Data Processing**: pandas, NumPy
+- **Machine Learning**: scikit-learn, CatBoost, XGBoost
+- **Explainability**: LIME (Local Interpretable Model-agnostic Explanations), DiCE (Diverse Counterfactual Explanations)
+- **Visualization**: Matplotlib, Plotly
+- **Documentation**: Jupyter Notebook
+
+## Repository Structure
 
 ```
 xAI-Digital-Project-for-Stroke-Risk/
-├─ README.md
-├─ digitalProject.ipynb
-└─ healthcare-dataset-stroke-data.csv
+├─ README.md                           # Project documentation
+├─ digitalProject.ipynb                # Main analysis notebook
+├─ healthcare-dataset-stroke-data.csv  # Dataset
+├─ Project Initial Outline.pdf         # Project specifications
+└─ Misc/                               # Supporting materials
+    ├─ SeminarPaper_Blueprint/         # LaTeX paper source
+    ├─ catboost_info/                  # Training artifacts
+    └─ Configuration files
 ```
 
-### Typical work cycle
+## Getting Started
 
-```bash
-# start from up-to-date main
-git checkout main
-git pull
+### Prerequisites
+- Python 3.8+
+- Jupyter Notebook
+- Required libraries: pandas, numpy, scikit-learn, xgboost, catboost, lime, dice-ml, matplotlib, plotly
 
-# create a branch
-git checkout -b feature/add-branch-name
+### Usage
 
-# do work, commit
-git add digitalProject.ipynb
-git commit -m "Commit comment here"
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/hamzaashrafjanjua/xAI-Digital-Project-for-Stroke-Risk.git
+   cd xAI-Digital-Project-for-Stroke-Risk
+   ```
 
-# rebase on latest and push
-git pull --rebase
-git push -u origin feature/add-branch-name
+2. Open the Jupyter notebook:
+   ```bash
+   jupyter notebook digitalProject.ipynb
+   ```
 
-# open a PR, get review, merge, then clean up
-```
+3. Execute cells sequentially to:
+   - Load and explore the healthcare dataset
+   - Train Random Forest and XGBoost models
+   - Generate LIME local explanations
+   - Analyze fidelity and calibration metrics
+   - Visualize counterfactual examples
 
-## Notes
+## Clinical Implications
 
-- The notebook expects the dataset at `healthcare-dataset-stroke-data.csv` in the repository root (same folder as the notebook). The provided notebook already uses this path.
+This analysis demonstrates that machine learning models can provide clinically relevant stroke risk predictions when complemented with robust explainability techniques. Key recommendations for healthcare practitioners:
 
-## Collaboration workflow
+1. **Model Selection**: Prefer XGBoost for its superior recall in identifying at-risk patients
+2. **Explanation Trust**: Use Random Forest-derived LIME explanations as primary decision support due to higher fidelity
+3. **Borderline Cases**: For low-fidelity predictions, supplement model recommendations with clinical expertise
+4. **Fairness**: Review cohort-wise calibration gaps to ensure equitable care across demographic groups
+5. **Continuous Monitoring**: Track model performance and explanations across new patient cohorts
 
-To keep the notebook up to date and avoid clashing when multiple people work:
+## Contributing
 
-- Use branches
-	- Create a feature branch per task: `git checkout -b feature/<short-name>`
-	- Open a Pull Request to merge into `main` when ready.
-	- Keep PRs small and focused for easy review.
+For research, analysis, or contribution inquiries, please contact the project author.
 
-- Pull before you start and before you push
-	- Always run `git pull --rebase` on your branch to replay your changes on top of the latest remote.
-	- Resolve any conflicts locally; test; then push.
+## License
 
-- Avoid noisy notebook diffs
-	- This repo is configured to strip notebook outputs on commit (nbstripout), so commits don’t include large output diffs.
-	- nbdime is enabled globally for notebook-aware diffs/merges, making conflict resolution clearer.
+This project is maintained for research and educational purposes.
 
-- Commit discipline
-	- Write clear messages about what changed and why.
-	- Prefer many small commits over a single large one.
+## Author
 
-- Data files
-	- The dataset is kept at the repository root as `healthcare-dataset-stroke-data.csv`. If you plan to commit very large files or frequent changes, consider Git LFS.
-
-- Reviews and protection (on GitHub)
-	- Enable branch protection on `main` and require PR reviews and status checks.
-	- Optionally require linear history to encourage `--rebase` workflows.
+Hamza Ashraf Janjua
