@@ -1,3 +1,0 @@
-\babel@toc {english}{}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Approximating the tangent to the curve. To understand the shape of the ML function LIME generates points around the red cross (we have an idea of the boundary f(x) thanks to the colors of the generated points). From \href {https://medium.com/data-science/lime-explain-machine-learning-predictions-af8f18189bfe}{LIME: explain Machine Learning predictions}}}{13}{figure.caption.5}%
-\contentsline {figure}{\numberline {2}{\ignorespaces PDP and ICE for Key Risk Factors based on XGBoost (for comparison)}}{31}{figure.caption.36}%
